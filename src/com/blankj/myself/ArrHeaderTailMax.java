@@ -17,28 +17,46 @@ public class ArrHeaderTailMax {
         }
         System.out.println("sum="+sum);
 
-        return maxDetail(a,sum,0,a.length-1,0);
+        //return maxDetail(a,sum,0,a.length-1,0);
+
+        return maxDetail(a,0,a.length-1,0);
+
     }
 
-    public  static int maxDetail(int[] a,int sum,int leftIndex,int rightIndex,int max){
-        int chooseNum = 0;
-        if(rightIndex-leftIndex>1){
-            int leftMax = sum - maxDetail(a,sum-a[leftIndex],leftIndex+1,rightIndex,max);
-            int rightMax = sum - maxDetail(a,sum-a[rightIndex],leftIndex,rightIndex-1,max);
+    //public  static int maxDetail(int[] a,int sum,int leftIndex,int rightIndex,int max){
+    //    if(rightIndex-leftIndex>1){
+    //        int leftMax = sum - maxDetail(a,sum-a[leftIndex],leftIndex+1,rightIndex,max);
+    //        int rightMax = sum - maxDetail(a,sum-a[rightIndex],leftIndex,rightIndex-1,max);
+    //
+    //        max = max + Math.max(leftMax,rightMax);
+    //        System.out.println("leftMax="+leftMax+",   rightMax="+rightMax+",   Math.max(leftMax,rightMax)="+Math.max(leftMax,rightMax));
+    //        System.out.println("max = " + max);
+    //        return  max;
+    //    }else {
+    //        System.out.println("leftMax="+a[leftIndex]+",   rightMax="+a[rightIndex]+",   Math.max(leftMax,rightMax)====  "+Math.max(a[leftIndex],a[rightIndex]));
+    //        return Math.max(a[leftIndex],a[rightIndex]);
+    //    }
+    //}
 
-            chooseNum = Math.max(leftMax,rightMax);
-            return chooseNum;
+    public  static int maxDetail(int[] a,int leftIndex,int rightIndex,int max){
+        if(rightIndex-leftIndex>1){
+            int chooseNum = maxDetail(a,leftIndex+1,rightIndex,max)>maxDetail(a,leftIndex,rightIndex-1,max)?
+                a[rightIndex]:a[leftIndex];
+            max = max + chooseNum;
+            return  max;
         }else {
             return Math.max(a[leftIndex],a[rightIndex]);
         }
     }
 
     public static void main(String[] args) {
-        int v[] = { 1, 2, 3, 6, 9, 5, 7, 4, 2, 6, 9, 5, 8, 7, 2, 1, 55, 3, 6, 9, 7, 5, 2 };
+        //int v[] = { 1, 2, 3, 6, 9, 5, 7, 4, 2, 6, 9, 5, 8, 7, 2, 1, 55, 3, 6, 9, 7, 5, 2 };
+        int v[] = { 10, 70,3,2,8,900};
+
         int n = max(v);
         System.out.println(n);
 
-        System.out.println(max2_dync(v));
+        //System.out.println(max2_dync(v));
     }
 
     /**
