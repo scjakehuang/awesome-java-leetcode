@@ -31,10 +31,10 @@ public class HasCycle_fast_slow_point {
         return false;
     }
 
-    class ListNode {
+    static class ListNode {
       int val;
       ListNode next;
-      ListNode(int x) {
+      public ListNode(int x) {
           val = x;
           next = null;
       }
